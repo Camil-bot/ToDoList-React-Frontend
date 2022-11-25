@@ -8,6 +8,7 @@ const Register = () => {
   const [password2, setPassword2] = useState("");
   const [errorEmail, setErrorEmail] = useState("");
   const [errorPassword, setErrorPassword] = useState("");
+  const [userName, setUserName] = useState("");
 
   function checkEmail(email) {
     //check this shit ca nu sunt sigur de ea
@@ -33,6 +34,7 @@ const Register = () => {
     }
     axios
       .post("http://localhost:5000/auth/register", {
+        name: userName,
         email: email,
         password: password
       })
@@ -44,6 +46,18 @@ const Register = () => {
 
   return (
     <Form>
+      <FormGroup>
+        <Input
+          id="userName"
+          name="userName"
+          value={userName}
+          placeholder="name"
+          type="text"
+          onChange={(e) => {
+            setUserName(e.target.value);
+          }}
+        />
+      </FormGroup>
       <FormGroup>
         <Input
           id="exampleEmail"
