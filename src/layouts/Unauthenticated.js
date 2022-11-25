@@ -1,16 +1,34 @@
 import React, { useState, useEffect } from "react";
 import Header from "../components/Header";
-import Login from "../components/Login";
-import Register from "../components/Register";
+import Login from "../views/Login";
+import Register from "../views/Register";
+import Dashboard from "../views/Register";
+// import './App.css';
+import {
+  Routes,
+  Route,
+  Link,
+  useNavigate,
+  useLocation,
+  Navigate,
+  Outlet,
+  BrowserRouter
+} from "react-router-dom";
 
-const AuthLayout = ({ child }) => {
-  const [isReg, setIsReg] = useState(true);
-
+const AuthLayout = () => {
   return (
     <>
       <Header />
-      <h1>It worrks</h1>
-      {isReg ? <Login /> : <Register />}
+      <h1>It worrks from layout</h1>
+      <BrowserRouter>
+        <Routes>
+          {/* randeaza view  */}
+          <Route path="/auth/login" element={<Login />} />
+          <Route path="/auth/register" element={<Register />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="*" element={<Navigate to="/auth/login" />} />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 };
