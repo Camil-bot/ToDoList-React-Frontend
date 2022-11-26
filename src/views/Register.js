@@ -1,14 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Form, FormGroup, Input, Button } from "reactstrap";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Register = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
   const [errorEmail, setErrorEmail] = useState("");
   const [errorPassword, setErrorPassword] = useState("");
   const [userName, setUserName] = useState("");
+  const [registered, setRegistered] = useState(0);
 
   function checkEmail(email) {
     //check this shit ca nu sunt sigur de ea
@@ -18,6 +21,10 @@ const Register = () => {
       ? true
       : false;
   }
+
+  // useEffect(() => {
+  //   navigate("/dashboard");
+  // }, [registered]); to be implemented...idk
 
   function handleRegister(e) {
     e.preventDefault();
@@ -39,8 +46,14 @@ const Register = () => {
         password: password
       })
       .then((response, err) => {
-        console.log(response);
+        console.log(response.data.msg);
+        if (response.data.msg === "OK") {
+          setRegistered((prevRegistered) => prevRegistered + 1);
+        }
+        // window.localStorage.setItem("registered", response.data.msg); nus daca aci tre sa il tin in local sau doar sa folosesc un useState,
+        //ma gandesc ca useState in conditiile in care,poate crea mai multe conturi
         console.log(err);
+        return;
       });
   }
 

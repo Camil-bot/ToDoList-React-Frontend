@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Header from "../components/Header";
 import Login from "../views/Login";
 import Register from "../views/Register";
-import Dashboard from "../views/Register";
+import Dashboard from "../views/Dashboard";
 // import './App.css';
 import {
   Routes,

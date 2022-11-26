@@ -8,19 +8,21 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  const [submitted, setSubmitted] = useState(0); //ikd how to do this with bools
 
   useEffect(() => {
+    console.log("am intrat");
     if (
-      localStorage.getItem("Authorization") === "" ||
-      localStorage.getItem("Authorization") === null
+      localStorage.getItem("Authorization") === null ||
+      localStorage.getItem("Authorization") === "undefined"
     ) {
-      setError("Unaouthorized");
-      return;
-    } else {
-      navigate("/dashboard");
+      console.log("sunt in if");
+      setError("Unauthorized");
       return;
     }
-  });
+    console.log("am iesti");
+    navigate("/dashboard");
+  }, [submitted]);
 
   function checkEmail(email) {
     //check this shit ca nu sunt sigur de ea
@@ -37,7 +39,6 @@ const Login = () => {
       setError("Invalid email format"); //works
       return;
     }
-
     axios
       .post("http://localhost:5000/auth/login", {
         email: email,
@@ -45,9 +46,18 @@ const Login = () => {
       })
       .then(
         (response) => {
-          console.log(response);
+          window.localStorage.setItem(
+            "Authorization",
+            response.data.Authorization
+          );
+          setSubmitted((prevSubmitted) => prevSubmitted + 1); //deci m-am prins ca pleca use-efect-ul inainte de stocarea authorizarii in localStorage, nus insa daca asa se procedeaza cum am facut aci
+          return;
         },
-        (err) => console.log(err)
+        (err) => {
+          console.log(err);
+          setError(err);
+          return;
+        }
       );
   }
 
@@ -79,7 +89,13 @@ const Login = () => {
         <h2>{password}</h2>
         <Label for="examplePassword">Password</Label>
       </FormGroup>{" "}
-      <Button onClick={(e) => handleLogin(e)}>Submit</Button>
+      <Button
+        onClick={(e) => {
+          handleLogin(e);
+        }}
+      >
+        Submit
+      </Button>
     </Form>
   );
 };
