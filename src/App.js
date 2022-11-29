@@ -6,14 +6,18 @@ import {
   useNavigate,
   useLocation,
   Navigate,
-  Outlet
+  Outlet,
+  Router
 } from "react-router-dom";
 import Unauthenticated from "./layouts/Unauthenticated";
+import Authenticated from "./layouts/Authenticated";
 
 const App = () => {
   return (
     <Routes>
-      <Route path="/auth" element={<Unauthenticated />} />
+      <Route path="/admin/*" element={<Authenticated />} />
+      <Route path="/auth/*" element={<Unauthenticated />} />
+      <Route path="*" element={<Navigate to="/auth/login" />} />
     </Routes>
   );
 };

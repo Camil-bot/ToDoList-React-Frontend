@@ -8,21 +8,6 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
-  const [submitted, setSubmitted] = useState(0); //ikd how to do this with bools
-
-  useEffect(() => {
-    console.log("am intrat");
-    if (
-      localStorage.getItem("Authorization") === null ||
-      localStorage.getItem("Authorization") === "undefined"
-    ) {
-      console.log("sunt in if");
-      setError("Unauthorized");
-      return;
-    }
-    console.log("am iesti");
-    navigate("/dashboard");
-  }, [submitted]);
 
   function checkEmail(email) {
     //check this shit ca nu sunt sigur de ea
@@ -35,10 +20,15 @@ const Login = () => {
 
   function handleLogin(e) {
     e.preventDefault();
-    if (checkEmail(email) === false) {
+    if (!checkEmail(email)) {
       setError("Invalid email format"); //works
       return;
     }
+    if (!email || !password) {
+      setError("pass or email undefined");
+      return;
+    }
+
     axios
       .post("http://localhost:5000/auth/login", {
         email: email,
@@ -46,11 +36,15 @@ const Login = () => {
       })
       .then(
         (response) => {
+          if (response.data.error != "200") {
+            setError(response.data.message);
+            return;
+          }
           window.localStorage.setItem(
             "Authorization",
             response.data.Authorization
           );
-          setSubmitted((prevSubmitted) => prevSubmitted + 1); //deci m-am prins ca pleca use-efect-ul inainte de stocarea authorizarii in localStorage, nus insa daca asa se procedeaza cum am facut aci
+          navigate("/admin/dashboard");
           return;
         },
         (err) => {
@@ -62,7 +56,7 @@ const Login = () => {
   }
 
   return (
-    <Form>
+    <Form onSubmit={handleLogin}>
       <FormGroup floating>
         <span className="text-danger">{error}</span>
         <Input
@@ -86,10 +80,10 @@ const Login = () => {
           type="password"
           onChange={(e) => setPassword(e.target.value)}
         />
-        <h2>{password}</h2>
         <Label for="examplePassword">Password</Label>
       </FormGroup>{" "}
       <Button
+        type="submit"
         onClick={(e) => {
           handleLogin(e);
         }}

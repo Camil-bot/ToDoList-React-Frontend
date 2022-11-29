@@ -10,8 +10,8 @@ const Register = () => {
   const [password2, setPassword2] = useState("");
   const [errorEmail, setErrorEmail] = useState("");
   const [errorPassword, setErrorPassword] = useState("");
+  const [errorEmpty, setErrorEmpty] = useState("");
   const [userName, setUserName] = useState("");
-  const [registered, setRegistered] = useState(0);
 
   function checkEmail(email) {
     return email.match(
@@ -22,7 +22,20 @@ const Register = () => {
   }
 
   function handleRegister(e) {
+    setErrorEmail("");
+    setErrorEmpty("");
+    setErrorPassword("");
     e.preventDefault();
+    // check if values are empty
+    if (
+      userName === "" ||
+      email === "" ||
+      password === "" ||
+      password2 === ""
+    ) {
+      setErrorEmpty("Fields must not be empty");
+      return;
+    }
 
     if (checkEmail(email) === false) {
       setErrorEmail("Invalid email format"); //works
@@ -31,7 +44,6 @@ const Register = () => {
 
     if (password !== password2) {
       setErrorPassword("Passwords do not match");
-      console.log(errorPassword);
       return;
     }
     axios
@@ -54,6 +66,8 @@ const Register = () => {
   return (
     <Form>
       <FormGroup>
+        <span className="text-danger">{errorEmpty}</span>
+
         <Input
           id="userName"
           name="userName"
@@ -66,6 +80,7 @@ const Register = () => {
         />
       </FormGroup>
       <FormGroup>
+        <span className="text-danger">{errorEmail}</span>
         <Input
           id="exampleEmail"
           name="email"
@@ -78,6 +93,7 @@ const Register = () => {
         />
       </FormGroup>
       <FormGroup>
+        <span className="text-danger">{errorPassword}</span>
         <Input
           id="password"
           name="password"
@@ -90,6 +106,7 @@ const Register = () => {
         />
       </FormGroup>
       <FormGroup>
+        <span className="text-danger">{errorPassword}</span>
         <Input
           id="password2"
           name="password2"
