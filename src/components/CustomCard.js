@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Card,
   CardBody,
@@ -7,8 +7,15 @@ import {
   Button,
   CardSubtitle
 } from "reactstrap";
+import axios from "axios";
 
 function CustomCard(props) {
+  const [isSolved, setIsSolved] = useState(false);
+
+  function setAsSolved() {
+    setIsSolved(!isSolved); //aci eram
+  }
+
   return (
     <>
       <Card
@@ -22,11 +29,22 @@ function CustomCard(props) {
           <CardSubtitle className="mb-2 text-muted" tag="h6">
             Card subtitle
           </CardSubtitle>
-          <CardText>
-            Some quick example text to build on the card title and make up the
-            bulk of the card‘s content.
-          </CardText>
-          <Button>Button</Button>
+          <CardText>Aici trebuia sa fie descriere</CardText>
+          <div className="container-fluid">
+            <div className="row text-center">
+              <div className="col-sm-6  ">
+                <Button>Delete</Button>
+              </div>
+              <div className="col-sm-6 ">
+                <Button
+                  onClick={() => setIsSolved(!isSolved)}
+                  color={isSolved ? "success" : "danger"}
+                >
+                  {isSolved ? "Solved" : "Unsolved"}
+                </Button>
+              </div>
+            </div>
+          </div>
         </CardBody>
       </Card>
     </>
