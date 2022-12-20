@@ -25,7 +25,7 @@ const AuthLayout = () => {
   return (
     <>
       <Header />
-      <h1>It worrks from layout</h1>
+
       <Routes>
         {/* randeaza view  */}
         <Route path="/login" element={<Login />} />

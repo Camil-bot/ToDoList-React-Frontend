@@ -64,62 +64,68 @@ const Register = () => {
   }
 
   return (
-    <Form>
-      <FormGroup>
-        <span className="text-danger">{errorEmpty}</span>
+    <div className="container">
+      <div className="row p-3">
+        <div className="col gy-5">
+          <Form>
+            <FormGroup>
+              <span className="text-danger">{errorEmpty}</span>
 
-        <Input
-          id="userName"
-          name="userName"
-          value={userName}
-          placeholder="name"
-          type="text"
-          onChange={(e) => {
-            setUserName(e.target.value);
-          }}
-        />
-      </FormGroup>
-      <FormGroup>
-        <span className="text-danger">{errorEmail}</span>
-        <Input
-          id="exampleEmail"
-          name="email"
-          value={email}
-          placeholder="email"
-          type="email"
-          onChange={(e) => {
-            setEmail(e.target.value);
-          }}
-        />
-      </FormGroup>
-      <FormGroup>
-        <span className="text-danger">{errorPassword}</span>
-        <Input
-          id="password"
-          name="password"
-          placeholder="password"
-          type="password"
-          value={password}
-          onChange={(e) => {
-            setPassword(e.target.value);
-          }}
-        />
-      </FormGroup>
-      <FormGroup>
-        <span className="text-danger">{errorPassword}</span>
-        <Input
-          id="password2"
-          name="password2"
-          placeholder="Retype Password"
-          type="password"
-          value={password2}
-          onChange={(e) => {
-            setPassword2(e.target.value);
-          }}
-        />
-      </FormGroup>
-      <Button onClick={(e) => handleRegister(e)}>Register</Button>
-    </Form>
+              <Input
+                id="userName"
+                name="userName"
+                value={userName}
+                placeholder="name"
+                type="text"
+                onChange={(e) => {
+                  setUserName(e.target.value);
+                }}
+              />
+            </FormGroup>
+            <FormGroup>
+              <span className="text-danger">{errorEmail}</span>
+              <Input
+                id="exampleEmail"
+                name="email"
+                value={email}
+                placeholder="email"
+                type="email"
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
+              />
+            </FormGroup>
+            <FormGroup>
+              <span className="text-danger">{errorPassword}</span>
+              <Input
+                id="password"
+                name="password"
+                placeholder="password"
+                type="password"
+                value={password}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
+              />
+            </FormGroup>
+            <FormGroup>
+              <span className="text-danger">{errorPassword}</span>
+              <Input
+                id="password2"
+                name="password2"
+                placeholder="Retype Password"
+                type="password"
+                value={password2}
+                onChange={(e) => {
+                  setPassword2(e.target.value);
+                }}
+              />
+            </FormGroup>
+            <Button onClick={(e) => handleRegister(e)}>Register</Button>
+          </Form>
+        </div>
+      </div>
+    </div>
   );
 };
 

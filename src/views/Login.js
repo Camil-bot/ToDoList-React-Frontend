@@ -55,42 +55,66 @@ const Login = () => {
       );
   }
 
+  function goToRegister(e) {
+    e.preventDefault();
+    navigate("/auth/register");
+  }
+
   return (
-    <Form onSubmit={handleLogin}>
-      <FormGroup floating>
-        <span className="text-danger">{error}</span>
-        <Input
-          id="exampleEmail"
-          name="email"
-          placeholder="Email"
-          type="email"
-          value={email}
-          onChange={(e) => {
-            setEmail(e.target.value);
-          }}
-        />
-        <Label for="exampleEmail">Email</Label>
-      </FormGroup>{" "}
-      <FormGroup floating>
-        <Input
-          id="examplePassword"
-          value={password}
-          name="password"
-          placeholder="Password"
-          type="password"
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <Label for="examplePassword">Password</Label>
-      </FormGroup>{" "}
-      <Button
-        type="submit"
-        onClick={(e) => {
-          handleLogin(e);
-        }}
-      >
-        Submit
-      </Button>
-    </Form>
+    <div className="container">
+      <div className="row p-3">
+        <div className="col gy-5">
+          <Form onSubmit={handleLogin}>
+            <FormGroup floating>
+              <span className="text-danger">{error}</span>
+              <Input
+                id="exampleEmail"
+                name="email"
+                placeholder="Email"
+                type="email"
+                value={email}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
+              />
+              <Label for="exampleEmail">Email</Label>
+            </FormGroup>{" "}
+            <FormGroup floating>
+              <Input
+                id="examplePassword"
+                value={password}
+                name="password"
+                placeholder="Password"
+                type="password"
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <Label for="examplePassword">Password</Label>
+            </FormGroup>{" "}
+            <div className="row">
+              <div className="col text-center">
+                <Button
+                  onClick={(e) => {
+                    handleLogin(e);
+                  }}
+                >
+                  Submit
+                </Button>
+              </div>
+
+              <div className="col  text-center">
+                <Button
+                  onClick={(e) => {
+                    goToRegister(e);
+                  }}
+                >
+                  Register
+                </Button>
+              </div>
+            </div>
+          </Form>
+        </div>
+      </div>
+    </div>
   );
 };
 

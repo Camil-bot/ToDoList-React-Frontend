@@ -2,21 +2,21 @@ import React from "react";
 import { Nav, NavItem, NavLink } from "reactstrap";
 import { useNavigate } from "react-router-dom";
 
-const CustomVNav = () => {
+const CustomVerticalNav = () => {
   const navigate = useNavigate();
   return (
-    <Nav vertical>
+    <Nav vertical color="dark">
       <NavItem>
-        <NavLink onClick={() => navigate("/dashboard")}>Dashboard</NavLink>
+        <NavLink href="/admin/dashboard">Dashboard</NavLink>
       </NavItem>
       <NavItem>
-        <NavLink onClick={() => navigate("/auth/login")}>Login</NavLink>
+        <NavLink href="/admin/account">Account</NavLink>
       </NavItem>
       <NavItem>
-        <NavLink href="#">Another Link</NavLink>
+        <NavLink href="/admin/info">Info</NavLink>
       </NavItem>
     </Nav>
   );
 };
 
-export default CustomVNav;
+export default CustomVerticalNav;

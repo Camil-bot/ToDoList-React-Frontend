@@ -71,8 +71,7 @@ const TaskModal = (props) => {
           >
             Do Something
           </Button>
-          <h1>{taskTitle}</h1>
-          <Button color="secondary" onClick={toggle}>
+          <Button type="submit" color="secondary" onClick={toggle}>
             Cancel
           </Button>
         </ModalFooter>
