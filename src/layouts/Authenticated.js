@@ -4,7 +4,7 @@ import Tasks from "../views/Tasks";
 import Info from "../views/Info";
 import Account from "../views/Account";
 import CustomVNav from "../components/CustomVerticalNav";
-import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
+import { Routes, Route,  useNavigate } from "react-router-dom";
 
 const AuthenticatedLayout = () => {
   const navigate = useNavigate();

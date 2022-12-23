@@ -15,7 +15,6 @@ function TaskComponent(props) {
   const [isSolved, setIsSolved] = useState(false);
   const [error, setError] = useState("");
 
-  // pentru spinner de is processing
   const [isSolving, setIsSolving] = useState(false);
   const navigate = useNavigate();
 
@@ -44,8 +43,6 @@ function TaskComponent(props) {
           return;
         }
       );
-
-    console.log(error);
   }
 
   function deteleTask() {
@@ -68,8 +65,6 @@ function TaskComponent(props) {
           return;
         }
       );
-    console.log("Apelez");
-    console.log(error);
   }
 
   return (
@@ -83,9 +78,8 @@ function TaskComponent(props) {
         <CardBody>
           <CardTitle tag="h5">{props.title}</CardTitle>
           <CardSubtitle className="mb-2 text-muted" tag="h6">
-            Card subtitle
+            Stau sub titlu, ca sunt subtitle
           </CardSubtitle>
-          <CardText>Aici trebuia sa fie descriere</CardText>
           <div className="container-fluid">
             <div className="row text-center">
               <div className="col-6">

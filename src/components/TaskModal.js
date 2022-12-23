@@ -18,9 +18,7 @@ const TaskModal = (props) => {
   const navigate = useNavigate();
 
   function handleTaskPost() {
-    // se poate face printr-o functie data ca props si apelata si aici
-    console.log("a intrat"); // si sa faca din nou call-ul sa fetch-uiasca task-urile
-    axios // de facut error sending,handling...
+    axios
       .post(
         "http://localhost:5000/tasks",
         {
@@ -69,7 +67,7 @@ const TaskModal = (props) => {
               toggle();
             }}
           >
-            Do Something
+            Post
           </Button>
           <Button type="submit" color="secondary" onClick={toggle}>
             Cancel

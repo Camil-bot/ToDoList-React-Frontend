@@ -35,7 +35,6 @@ const Header = () => {
               Logout
             </Button>
           ) : null}
-          {/* nus daca aci e best practice dar ma gandeam ca ar merge */}
         </NavItem>
       </Navbar>
     </>
