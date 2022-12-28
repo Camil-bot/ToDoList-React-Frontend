@@ -5,7 +5,7 @@ import TaskComponent from "../components/TaskComponent";
 import TaskModal from "../components/TaskModal";
 
 const Tasks = () => {
-  const [data, setData] = useState(null);
+  const [tasks, setTasks] = useState(null);
   const getTasks = async () => {
     const response = await axios.get("http://localhost:5000/tasks", {
       headers: {
@@ -13,13 +13,13 @@ const Tasks = () => {
       }
     });
 
-    setData(response.data);
+    setTasks(response.data.tasks);
   };
   useEffect(() => {
     getTasks();
   }, []);
 
-  if (data == null) {
+  if (tasks == null) {
     return (
       <>
         <div className="col-md-10 ml-sm-auto ">
@@ -39,11 +39,10 @@ const Tasks = () => {
     <>
       <div className="col-md-10 ml-sm-auto ">
         <div className="row gy-5 p-3">
-          {data.task.map((task) => (
+          {tasks.map((task, index) => (
             <div className="col-md-3">
-              {console.log(task._id)}
               <TaskComponent
-                key={task._id}
+                key={index}
                 title={task.title}
                 taskID={task._id}
                 solved={task.solved}

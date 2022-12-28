@@ -73,6 +73,7 @@ function TaskComponent(props) {
         style={{
           width: "18rem"
         }}
+        key={props.taskID}
       >
         <img alt="Sample" src="https://picsum.photos/300/200" />
         <CardBody>
