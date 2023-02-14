@@ -30,13 +30,13 @@ const Login = () => {
     }
 
     axios
-      .post("http://localhost:5000/auth/login", {
+      .post(process.env.REACT_APP_API_URL + "/auth/login", {
         email: email,
         password: password
       })
       .then(
         (response) => {
-          if (response.data.error != "200") {
+          if (response.data.error !== 200) {
             setError(response.data.message);
             return;
           }

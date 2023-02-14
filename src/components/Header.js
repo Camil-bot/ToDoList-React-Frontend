@@ -11,7 +11,7 @@ const Header = () => {
 
   async function logout() {
     const res = await axios.patch(
-      "http://localhost:5000/session",
+      process.env.REACT_APP_API_URL + "/session",
       {},
       {
         headers: { authorization: localStorage.getItem("Authorization") }

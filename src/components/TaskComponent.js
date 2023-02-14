@@ -3,7 +3,6 @@ import {
   Card,
   CardBody,
   CardTitle,
-  CardText,
   Button,
   CardSubtitle,
   Spinner
@@ -23,7 +22,7 @@ function TaskComponent(props) {
     setIsSolving(true);
     axios
       .patch(
-        "http://localhost:5000/tasks",
+        process.env.REACT_APP_API_URL + "/tasks",
         { taskID: props.taskID, solved: isSolved },
         { headers: { Authorization: localStorage.getItem("Authorization") } }
       )
@@ -47,7 +46,7 @@ function TaskComponent(props) {
 
   function deteleTask() {
     axios
-      .delete("http://localhost:5000/tasks", {
+      .delete(process.env.REACT_APP_API_URL + "/tasks", {
         headers: { Authorization: localStorage.getItem("Authorization") },
         data: { taskID: props.taskID }
       })

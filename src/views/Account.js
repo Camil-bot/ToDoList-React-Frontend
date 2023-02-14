@@ -7,7 +7,7 @@ export const Account = () => {
   const [loading, setLoading] = useState(null);
   useEffect(() => {
     axios
-      .get("http://localhost:5000/userInfo", {
+      .get(process.env.REACT_APP_API_URL + "/userInfo", {
         headers: {
           Authorization: localStorage.getItem("Authorization")
         }

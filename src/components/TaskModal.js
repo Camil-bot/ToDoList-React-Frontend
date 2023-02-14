@@ -20,7 +20,7 @@ const TaskModal = (props) => {
   function handleTaskPost() {
     axios
       .post(
-        "http://localhost:5000/tasks",
+        process.env.REACT_APP_API_URL + "/tasks",
         {
           taskTitle: taskTitle
         },
@@ -28,15 +28,14 @@ const TaskModal = (props) => {
       )
       .then(
         (response) => {
+          console.log(response);
           if (response.data.error != "200") {
             setError(response.data.message);
-            console.log(response);
             navigate(0);
             return;
           }
         },
         (err) => {
-          console.log(err);
           setError(err);
           return;
         }

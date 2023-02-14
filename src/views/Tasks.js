@@ -7,13 +7,15 @@ import TaskModal from "../components/TaskModal";
 const Tasks = () => {
   const [tasks, setTasks] = useState(null);
   const getTasks = async () => {
-    const response = await axios.get("http://localhost:5000/tasks", {
+    const response = await axios.get(process.env.REACT_APP_API_URL + "/tasks", {
       headers: {
         Authorization: localStorage.getItem("Authorization")
       }
     });
-
-    setTasks(response.data.tasks);
+    console.log(response.status);
+    if (response.status === 200) {
+      setTasks(response.data.tasks);
+    }
   };
   useEffect(() => {
     getTasks();

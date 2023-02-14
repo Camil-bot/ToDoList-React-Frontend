@@ -47,17 +47,15 @@ const Register = () => {
       return;
     }
     axios
-      .post("http://localhost:5000/auth/register", {
+      .post(process.env.REACT_APP_API_URL + "/auth/register", {
         name: userName,
         email: email,
         password: password
       })
       .then((response, err) => {
-        console.log(response.data.msg);
         if (response.data.msg === "OK") {
           navigate("/auth/login");
         }
-
         console.log(err);
         return;
       });
